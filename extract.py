@@ -15,6 +15,21 @@ def format_list(l: list[str]):
     quoted = [f"'{x}'" for x in l]
     return f"[{', '.join(quoted)}]"
 
+def curl_script(urls: list[str]) -> str:
+    cmds = [f"curl -LO {url}" for url in urls]
+    newline = "\n"
+    return f"""#!/bin/bash
+set -e
+mkdir -p data
+cd data
+
+{newline.join(cmds)}
+"""
+
+def write_curl_script(urls: list[str]) -> None:
+    with open("extract.sh", "w") as f:
+        f.write(curl_script(urls))
+
 sample_url = "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_2020-01.parquet"
 
 def load_data(urls: list[str]):
@@ -32,4 +47,5 @@ def load_data(urls: list[str]):
 if __name__ == '__main__':
     u = urls()
     pprint(u)
-    load_data(u)
+    # load_data(u)
+    write_curl_script(u)
