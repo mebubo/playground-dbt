@@ -16,7 +16,7 @@ def format_list(l: list[str]):
     return f"[{', '.join(quoted)}]"
 
 def curl_script(urls: list[str]) -> str:
-    cmds = [f"curl -LO {url}" for url in urls]
+    cmds = [f"curl -LO -C - {url}" for url in urls]
     newline = "\n"
     return f"""#!/bin/bash
 set -e
