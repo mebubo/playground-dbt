@@ -20,14 +20,15 @@ def curl_script(urls: list[str]) -> str:
     newline = "\n"
     return f"""#!/bin/bash
 set -e
+
 mkdir -p data
 cd data
 
 {newline.join(cmds)}
 """
 
-def write_curl_script(urls: list[str]) -> None:
-    with open("extract.sh", "w") as f:
+def write_curl_script(name: str, urls: list[str]) -> None:
+    with open(name, "w") as f:
         f.write(curl_script(urls))
 
 sample_url = "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_2020-01.parquet"
@@ -48,4 +49,4 @@ if __name__ == '__main__':
     u = urls()
     pprint(u)
     # load_data(u)
-    write_curl_script(u)
+    write_curl_script("dl.sh", u)
