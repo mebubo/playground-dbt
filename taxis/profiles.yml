@@ -1,0 +1,6 @@
+taxis:
+  outputs:
+    dev:
+      type: duckdb
+      path: ./taxis.db
+  target: dev

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: taxis
+    schema: raw
+    tables:
+      - name: taxis
+  - name: external_source
+    tables:
+      - name: zones
+        meta:
+          external_location: 'https://d37ci6vzurychx.cloudfront.net/misc/taxi+_zone_lookup.csv'
+
+
+models:
+  - name: rides
+    columns:
+      - name: hvfhs_license_num
+      - name: PULocationID
+      - name: DOLocationID
