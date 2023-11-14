@@ -1,3 +1,3 @@
 python generate.py
-bash dl.sh
-duckdb taxis/taxis.db < extract.sql
+time bash dl.sh
+time duckdb taxis/taxis.db < extract.sql
